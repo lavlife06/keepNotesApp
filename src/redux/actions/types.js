@@ -1,2 +1,2 @@
-export const UPDATE_NOTES = "UPDATE_NOTES";
-export const CLEAR_NOTES = "CLEAR_NOTES";
+export const UPDATE_TASKS = "UPDATE_TASKS";
+export const CLEAR_TASKS = "CLEAR_TASKS";

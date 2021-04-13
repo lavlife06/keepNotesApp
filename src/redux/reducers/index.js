@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import notesReducer from "./notes";
+import tasksReducer from "./tasks";
 
 export default combineReducers({
-  notes: notesReducer,
+  notes: tasksReducer,
 });

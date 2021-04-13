@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 import { connect } from "react-redux";
 
-import { updateNotes } from "../redux/actions/notes";
+import { updateTasks } from "../redux/actions/tasks";
 const Container = styled.div`
   border: 1px solid lightgrey;
   border-radius: 15px;
@@ -44,7 +44,7 @@ class Task extends React.Component {
           taskIds: newTaskIds2,
         },
       };
-      this.props.updateNotes({
+      this.props.updateTasks({
         tasks: theTasks,
         columns: newColumns,
       });
@@ -78,7 +78,7 @@ class Task extends React.Component {
           taskIds: newTaskIds2,
         },
       };
-      this.props.updateNotes({
+      this.props.updateTasks({
         tasks: theTasks,
         columns: newColumns,
       });
@@ -142,7 +142,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateNotes: (notes) => dispatch(updateNotes(notes)),
+    updateTasks: (notes) => dispatch(updateTasks(notes)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Task);

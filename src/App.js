@@ -5,7 +5,7 @@ import Column from "./component/column";
 import "./App.css";
 import { connect } from "react-redux";
 
-import { updateNotes, clearNotes } from "./redux/actions/notes";
+import { updateTasks, clearTasks } from "./redux/actions/tasks";
 class App extends React.Component {
   state = {
     modalOpen: false,
@@ -45,7 +45,7 @@ class App extends React.Component {
 
     // console.log(theTasks);
 
-    this.props.updateNotes({
+    this.props.updateTasks({
       tasks: theTasks,
       columns: {
         ...this.props.columns,
@@ -95,7 +95,7 @@ class App extends React.Component {
         taskIds: newTaskIds,
       };
 
-      this.props.updateNotes({
+      this.props.updateTasks({
         tasks: this.props.tasks,
         columns: {
           ...this.props.columns,
@@ -137,7 +137,7 @@ class App extends React.Component {
         allTasks[item].completed = false;
       });
     }
-    this.props.updateNotes({
+    this.props.updateTasks({
       tasks: allTasks,
       columns: {
         ...this.state.columns,
@@ -259,8 +259,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateNotes: (notes) => dispatch(updateNotes(notes)),
-    clearNotes: () => dispatch(clearNotes()),
+    updateTasks: (notes) => dispatch(updateTasks(notes)),
+    clearTasks: () => dispatch(clearTasks()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);
