@@ -1,0 +1,29 @@
+body {
+  display: block;
+  min-height: 100%;
+  border: 1px solid black;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  margin: 8px;
+}
+section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+}
+.notestrue {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+.notesfalse {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
