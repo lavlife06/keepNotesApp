@@ -1,8 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 .columnContainer {
   margin: 8px;
   border: 1px solid lightgrey;
-  border-radius: 2px;
+  border-radius: 15px;
   min-width: 42vw;
   display: flex;
   flex-direction: column;
+  background-color: #202124;
+}
+.title {
+  color: white;
+  font-size: 18;
+  font-weight: 800;
+}
+.descrip {
+  color: white;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 14;
+  word-wrap: break-word;
+  opacity: 0.8;
+  font-weight: 400;
+}
+.checkboxlabel {
+  color: white;
+  margin-top: 0px;
+}
+.checkboxinput {
+  margin-right: 7px;
 }

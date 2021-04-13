@@ -6,10 +6,14 @@ import { connect } from "react-redux";
 import { updateNotes } from "../redux/actions/notes";
 const Container = styled.div`
   border: 1px solid lightgrey;
-  border-radius: 2px;
+  border-radius: 15px;
   padding: 8px;
-  margin-bottom: 8px;
-  background-color: ${(props) => (props.isdragging ? "lightgreen" : "white")};
+  margin-right: 12px;
+  margin-left: 12px;
+  margin-bottom: 20px;
+  background-color: ${(props) => (props.isdragging ? "#202124" : "#202124")};
+  ${"" /* box-shadow: 3px 5px 5px lightgreen inset; */}
+  box-shadow: 3px 5px lightgreen;
 `;
 
 class Task extends React.Component {
@@ -97,29 +101,31 @@ class Task extends React.Component {
             isdragging={snapshot.isDragging}
           >
             <Fragment>
-              <div>
-                {this.props.task.title}
-                {this.props.task.content}
-              </div>
+              <div className="title">{this.props.task.title}</div>
+              <div className="descrip">{this.props.task.content}</div>
               {this.props.task.completed ? (
                 <input
+                  className="checkboxinput"
                   type="checkbox"
                   id={this.props.task.id}
                   name={this.props.task.id}
                   value={this.props.task.completed}
-                  onClick={this.handleCheckBox}
+                  onChange={this.handleCheckBox}
                   checked
                 />
               ) : (
                 <input
+                  className="checkboxinput"
                   type="checkbox"
                   id={this.props.task.id}
                   name={this.props.task.id}
                   value={this.props.task.completed}
-                  onClick={this.handleCheckBox}
+                  onChange={this.handleCheckBox}
                 />
               )}
-              <label htmlFor={this.props.task.id}>completed</label>
+              <label className="checkboxlabel" htmlFor={this.props.task.id}>
+                Completed
+              </label>
             </Fragment>
           </Container>
         )}

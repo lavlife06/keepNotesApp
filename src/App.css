@@ -1,17 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 body {
   display: block;
   min-height: 100%;
-  border: 1px solid black;
+  background-color: #202124;
+  font-family: Roboto;
 }
 header {
   display: flex;
   flex-direction: row;
-  margin: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 25px;
+  background-color: #202124;
+
+  color: lightgreen;
+  font-weight: 500;
 }
 section {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 .mainContainer {
   display: flex;
@@ -26,4 +36,51 @@ section {
   display: flex;
   align-items: center;
   padding: 15px;
+}
+.form {
+  display: flex;
+  margin-right: 10vw;
+  margin-left: 10vw;
+  flex-direction: column;
+  border: 1px solid rgb(121, 120, 120);
+  border-radius: 12px;
+  padding: 10px;
+  padding-top: 0px;
+  background-color: #202124;
+}
+.formInput {
+  display: flex;
+  margin: 0px;
+  width: auto;
+  height: auto;
+  font-weight: 500;
+  font-size: 17px;
+  border-style: none;
+  background-color: #202124;
+  color: white;
+  margin-bottom: 2px;
+}
+.textarea {
+  display: flex;
+  margin: 0px;
+  width: auto;
+  height: auto;
+  min-height: 80px;
+  font-weight: 500;
+  font-size: 15px;
+  border-style: none;
+  background-color: #202124;
+  color: white;
+}
+.button {
+  display: block;
+  background-color: lightgreen;
+  margin-top: 2px;
+  border: none;
+  color: black;
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  outline: none;
 }

@@ -13,12 +13,13 @@ export default class Column extends React.Component {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
+            color: "white",
           }}
         >
-          <div style={{ margin: "12px 8px 12px 8px" }}>
+          <div style={{ margin: "12px 12px 12px 12px", fontSize: "23px" }}>
             {this.props.column.title}
           </div>
-          <div style={{ margin: "12px 8px 12px 8px" }}>
+          <div style={{ margin: "12px 12px 12px 12px", fontSize: "23px" }}>
             {this.props.column.taskIds.length}
           </div>
         </div>
@@ -28,9 +29,12 @@ export default class Column extends React.Component {
               style={{
                 padding: "8px",
                 transition: "background-color 0.2s ease",
-                backgroundColor: snapshot.isDraggingOver ? "skyblue" : "white",
+                backgroundColor: snapshot.isDraggingOver
+                  ? "skyblue"
+                  : "#202124",
                 flexGrow: 1,
                 minHeight: "100px",
+                borderRadius: "15px",
               }}
               ref={provided.innerRef}
               {...provided.droppableProps}

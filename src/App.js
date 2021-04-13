@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { updateNotes, clearNotes } from "./redux/actions/notes";
 class App extends React.Component {
   state = {
-    notes: false,
+    modalOpen: false,
     formdata: {
       title: "",
       description: "",
@@ -62,6 +62,10 @@ class App extends React.Component {
         description: "",
       },
     });
+
+    this.setState({
+      modalOpen: false,
+    });
   };
 
   onDragEnd = (result) => {
@@ -101,6 +105,7 @@ class App extends React.Component {
       return;
     }
 
+    let allTasks = { ...this.props.tasks };
     // Moving from one list to another
     const startTaskIds = Array.from(start.taskIds);
     startTaskIds.splice(source.index, 1);
@@ -116,8 +121,24 @@ class App extends React.Component {
       taskIds: finishTaskIds,
     };
 
+    if (start.id === "column-1") {
+      startTaskIds.forEach((item) => {
+        allTasks[item].completed = false;
+      });
+      finishTaskIds.forEach((item) => {
+        allTasks[item].completed = true;
+      });
+    }
+    if (start.id === "column-2") {
+      startTaskIds.forEach((item) => {
+        allTasks[item].completed = true;
+      });
+      finishTaskIds.forEach((item) => {
+        allTasks[item].completed = false;
+      });
+    }
     this.props.updateNotes({
-      tasks: this.props.tasks,
+      tasks: allTasks,
       columns: {
         ...this.state.columns,
         [newStart.id]: newStart,
@@ -127,7 +148,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state.loading);
     console.log(this.props);
     if (this.state.loading) {
       return <div>Loading....</div>;
@@ -136,37 +156,86 @@ class App extends React.Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="mainContainer">
-          <header>
-            <div>NotesApp</div>
-            <div>Search your notes...</div>
-          </header>
-          {/* <div onClick={() => {}}>Create list</div> */}
-          <form
-            className="form"
-            action="create-task.html"
-            onSubmit={(e) => this.onSubmitHandler(e)}
+          <header
+            onClick={() => {
+              if (this.state.modalOpen) {
+                this.setState({
+                  modalOpen: false,
+                });
+              }
+            }}
           >
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Title..."
-                name="title"
-                value={title}
-                onChange={(e) => this.onChangeHandler(e)}
-              />
+            NotesApp
+          </header>
+          <hr style={{ color: "white", width: "92vw" }}></hr>
+
+          {/* <div onClick={() => {}}>Create list</div> */}
+          {this.state.modalOpen ? (
+            <Fragment>
+              <form
+                className="form"
+                action="create-task.html"
+                onSubmit={(e) => this.onSubmitHandler(e)}
+              >
+                <span
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    fontSize: "25px",
+                    fontWeight: 900,
+                    color: "rgb(22, 253, 157)",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    this.setState({
+                      modalOpen: false,
+                    });
+                  }}
+                >
+                  &times;
+                </span>
+                <input
+                  className="formInput"
+                  type="text"
+                  placeholder="Title..."
+                  name="title"
+                  value={title}
+                  onChange={(e) => this.onChangeHandler(e)}
+                />
+                <textarea
+                  className="textarea"
+                  type="text"
+                  placeholder="Description..."
+                  name="description"
+                  value={description}
+                  onChange={(e) => this.onChangeHandler(e)}
+                />
+                <input className="button" type="submit" value="Create" />
+              </form>
+            </Fragment>
+          ) : (
+            <div
+              className="form"
+              style={{ padding: "10px", color: "white", marginTop: "5px" }}
+              onClick={() => {
+                this.setState({
+                  modalOpen: true,
+                });
+              }}
+            >
+              Take a Note...
             </div>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Description..."
-                name="description"
-                value={description}
-                onChange={(e) => this.onChangeHandler(e)}
-              />
-            </div>
-            <input type="submit" className="btn btn-primary" value="Create" />
-          </form>
-          <section>
+          )}
+
+          <section
+            onClick={() => {
+              if (this.state.modalOpen) {
+                this.setState({
+                  modalOpen: false,
+                });
+              }
+            }}
+          >
             {this.props.columnOrder.map((columnId) => {
               const column = this.props.columns[columnId];
               const tasks = column.taskIds.map(
