@@ -29,9 +29,7 @@ export default class Column extends React.Component {
               style={{
                 padding: "8px",
                 transition: "background-color 0.2s ease",
-                backgroundColor: snapshot.isDraggingOver
-                  ? "skyblue"
-                  : "#202124",
+                backgroundColor: "#202124",
                 flexGrow: 1,
                 minHeight: "100px",
                 borderRadius: "15px",
